@@ -29,14 +29,16 @@ class Home(View):
         print(product)
         print(cart)
         return redirect('/')
-   
+
     def get(self,request):
+        from store.models.customer import Customer
         print('your email : ',request.session.get('email'))
-        print('your id: ',request.session.get(id))
+
+        print('your id: ',request.session.get('id'))
         cart=request.session.get('cart')
         if not cart:
             request.session['cart']={}
-        
+
         products = None
         categories = Category.get_all_categories()
         category_id = request.GET.get('category')
@@ -48,5 +50,3 @@ class Home(View):
         data['products'] = products
         data['categories'] = categories
         return render(request, 'index.html', data)
-
-   

@@ -9,10 +9,12 @@ from django.views import View
 
 class Login(View):
     def get(self, request):
-        print("session ",request.session)
+        print("session ",request.session.get('id'))
+        print("session ",request.session.get('email'))
         return render(request, 'login.html')
 
     def post(self, request):
+        # import pdb; pdb.set_trace()
         error_message = None
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -20,8 +22,9 @@ class Login(View):
         if customer:
             match_Password = check_password(password, customer.password)
             if match_Password:
-                request.session['id'] = customer.id
+                request.session['customer_id'] = customer.id
                 request.session['email'] = customer.email
+                request.session['user'] = customer.first_name
                 return redirect('/')
             else:
                 error_message = 'Email or Password Invailed !'
