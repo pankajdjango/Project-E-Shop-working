@@ -31,7 +31,9 @@
                 </ul>
                 <ul class="navbar-nav d-flex">
                 <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/cart">Cart</a>
+                        <a class="nav-link active" aria-current="page" href="/cart">Cart
+                        <small class="badge bg-info">{{request.session.cart.keys|length}}</small>
+                        </a>
                     </li>
                 {% if request.session.email %}
                     <li class="nav-item">

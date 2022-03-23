@@ -2,11 +2,13 @@ from store.models import Customer
 from django.shortcuts import redirect, render
 from django.contrib.auth.hashers import make_password
 from django.views import View
-
+from django.utils.decorators import method_decorator
+from store.auth.middleware import already_login
 
 # Create your views here.
 
 class Signup(View):
+    @method_decorator(already_login)
     def get(self, request):
         return render(request, 'signup.html')
 

@@ -2,12 +2,14 @@ from store.models import Customer
 from django.shortcuts import redirect, render
 from django.contrib.auth.hashers import check_password
 from django.views import View
-
+from django.utils.decorators import method_decorator
+from store.auth.middleware import already_login
 
 # Create your views here.
 
 
 class Login(View):
+    @method_decorator(already_login)
     def get(self, request):
         print("session ",request.session.get('id'))
         print("session ",request.session.get('email'))

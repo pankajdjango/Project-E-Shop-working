@@ -8,6 +8,8 @@ from store.models.orders import Orders
 # Create your views here.
 
 class Checkout(View):
+    def get(self,request):
+        return redirect('/')
     def post(self, request):
         address = request.POST.get('address')
         phone = request.POST.get('phone')
