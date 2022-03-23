@@ -5,7 +5,7 @@
         <div class="col-lg-5 mx-auto border rounded p-2 bg-light">
             <h4 class="alert text-center alert-light border rounded">Create An Account</h4>
             <p class="alert text-danger text-center m-0 p-0 border rounded">{% if error %}{{error}}{% endif %}</p>
-            <form action="/signup" method="POST" class="needs-validation">
+            <form action="" method="POST" class="needs-validation" >
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="fname" class="form-label">First name</label>

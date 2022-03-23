@@ -52,7 +52,7 @@ class Signup(View):
                                 contact=contact, email=email, password=password)
             customer.password = make_password(password)
             customer.register()
-            return redirect('/login')
+            return redirect('login')
         else:
             data = {
                 'error': error_message,

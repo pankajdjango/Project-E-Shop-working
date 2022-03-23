@@ -9,6 +9,7 @@ from django.views import View
 
 class Login(View):
     def get(self, request):
+        print("session ",request.session)
         return render(request, 'login.html')
 
     def post(self, request):
@@ -19,11 +20,16 @@ class Login(View):
         if customer:
             match_Password = check_password(password, customer.password)
             if match_Password:
-                request.session['id']=customer.id
-                request.session['email']=customer.email
+                request.session['id'] = customer.id
+                request.session['email'] = customer.email
                 return redirect('/')
             else:
                 error_message = 'Email or Password Invailed !'
         else:
             error_message = 'Email or Password Invailed !'
         return render(request, 'login.html', {'error': error_message})
+
+
+def logout(request):
+    request.session.clear()
+    return redirect('login')
